@@ -65,8 +65,7 @@
 <script>
 import Vue from "vue";
 import { MdAvatar } from "vue-material/dist/components";
-import "vue-material/dist/vue-material.min.css";
-import "vue-material/dist/theme/default.css";
+import "vue-material/dist/vue-material.min.css"; 
 
 Vue.use(MdAvatar);
 
@@ -91,7 +90,7 @@ export default {
   max-width: 680px;
   border: 1px solid lightgray;
   border-radius: 10px;
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 .post__postHeader {
   padding: 10px;
