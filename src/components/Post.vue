@@ -1,16 +1,23 @@
 <template>
   <div class="post__body">
     <div class="post__postHeader">
-      <md-avatar class="post__userAvatar">
+      <div class="post__user">
+        <md-avatar class="post__userAvatar">
         <img v-bind:src="userImgUrl" alt />
-      </md-avatar>
-      <div class="post__userAria">
-        <p class="post__userName">
+        </md-avatar>
+       <div class="post__userAria">
+            <p class="post__userName">
           <strong>Adibe Mohamed</strong>
         </p>
-        <p class="post__time">12:00</p>
+        <p class="post__time">8 August at 16:45</p>
+       </div>
       </div>
+
+        <div class="post__more">...</div>
+
     </div>
+
+
     <div class="post__caption">hello guys how is going</div>
     <div class="post__media">
       <img
@@ -20,7 +27,11 @@
     </div>
     <div class="post__footer">
         <div class="post__reaction">
-            101 Comments  0 Shares
+           <div class="post__reactionTotal">😆🔥💟 200</div>
+           <div class="post__reactionCount">
+                <p>101 Comments</p>
+                <p>1 Shares</p>
+           </div>
         </div>
      <div class="post__action">
           <div>Like</div>
@@ -29,15 +40,12 @@
      </div>
      <div class="post__comments">
          <strong>View Comments</strong>
-         <ul>
-             <li>Comments</li>
-             <li>Comments</li>
-             <li>Comments</li>
-             <li>Comments</li>
-             <li>Comments</li>
-             <li>Comments</li>
-         </ul>
-
+     </div>
+     <div class="post__addComment">
+          <md-avatar class="post__commentUser">
+        <img v-bind:src="userImgUrl" alt />
+      </md-avatar>
+      <input type="text" placeholder="Write a comment">
      </div>
     </div>
   </div>
@@ -73,25 +81,47 @@ export default {
 .post__postHeader {
   padding: 10px;
   display: flex;
+  width: 100%;
 }
 .post__userAvatar {
   flex: 0;
 }
-.post__userAria {
-  flex: 1;
-  padding-left: 10px;
+.post__user{
+  display: flex;
 }
+.post__userAria {
+    padding: 0px 10px;
+}
+
+.post__more {
+    flex: 1;
+    text-align: right; 
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: darkgray 
+}
+
+
 .post__caption {
   padding: 5px 10px;
+  font-weight: 400;
 }
 .post__media img {
   max-height: 500px;
   width: 100%;
   object-fit: cover;
+  border: none;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  
 }
 .post__reaction {
     padding: 10px;
 }
+.post__reactionCount > p {
+    padding: 0px 5px;
+}
+
 .post__footer {
     padding: 0px 10px;
 }
@@ -108,7 +138,30 @@ export default {
     flex: 1;
     font-weight: 800;
 }
+.post__reaction {
+    display: flex;
+    justify-content: space-between;
+}
+.post__reactionCount {
+    display: flex;
+}
 .post__comments {
     padding: 10px 10px;
 }
+.post__addComment {
+    padding: 10px;
+    display: flex;
+}
+.post__addComment input {
+    flex: 1;
+    border: none;
+    border-radius: 30px;
+    background-color: #F0F2F5;
+    padding: 10px;
+    margin-left: 10px;
+}
+.post__commentUser {
+    flex: 0;
+}
+
 </style>
