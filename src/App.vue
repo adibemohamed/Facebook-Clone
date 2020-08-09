@@ -1,50 +1,76 @@
 <template>
   <div id="app">
-    <Navbar icon="icon"/>
-    <div id="feed">
-      <div class="feed__stroies">
-        <Story/>
+    <Navbar icon="icon" />
+    
+      <div id="feed">
+        <div class="feed__stroies">
+          <StoryPost />
+          <Story />
+          <Story />
+          <Story />
+          <Story />
+        </div>
+        <div class="feed_postCrete">
+          <PostCreate />
+        </div>
+
+        <Post
+          userImgUrl="https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8"
+        />
+        <Post
+          userImgUrl="https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8"
+        />
+        <Post
+          userImgUrl="https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8"
+        />
       </div>
-      <center>
-      <Post userImgUrl="https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8"/>
-      <Post userImgUrl="https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8"/>
-      <Post userImgUrl="https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8"/>
-      </center>
-    </div>
-     </div>
+    
+  </div>
 </template>
 
-<script> 
-import Post from './components/Post.vue'
-import Navbar from './components/Navbar.vue'
-import Story from './components/Story.vue'
+<script>
+import Post from "./components/Post.vue";
+import Navbar from "./components/Navbar.vue";
+import Story from "./components/Story.vue";
+import StoryPost from "./components/StoryPost.vue"
+import PostCreate from './components/PostCreate.vue'
 
 export default {
-  name: 'App', 
+  name: "App",
   components: {
     Navbar,
     Post,
-    Story
+    PostCreate,
+    Story,
+    StoryPost,
   },
   data: function() {
     return {
-      icon: '../assets/facebook-clone.png'
-    }
-  }
-}
+      icon: "../assets/facebook-clone.png",
+    };
+  },
+};
 </script>
 
- <style>
- *{
-   padding: 0;
-   margin: 0;
- }
- body, html { 
- }
- #app {
-   background-color: #F0F2F5;
-   width: 100%;
-   height: 100%;
- }
-  
- </style>
+<style>
+* {
+  padding: 0;
+  margin: 0;
+}
+body,
+html {
+}
+#app {
+  background-color: #f0f2f5;
+  width: 100%;
+  height: 100%;
+}
+#feed {
+  margin: auto;
+  max-width: 680px;
+}
+.feed__stroies {
+  padding: 20px 0px 40px 0px;
+  display: flex;
+}
+</style>

@@ -103,9 +103,7 @@ export default {
 }
 .post__user {
   display: flex;
-}
-.post__userName {
-}
+} 
 .post__userAria {
   padding: 0px 10px;
 }
@@ -129,9 +127,7 @@ export default {
 }
 .post__reaction {
   padding: 10px;
-}
-.post__reaction > *{
-}
+} 
 .post__reactionCount > p {
   padding: 0px 5px;
 }
