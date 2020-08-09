@@ -1,8 +1,8 @@
 <template>
     <div id="navbar">
         <nav>
-            <md-avatar>
-              <img v-bind:src="icon" alt="">
+            <md-avatar class="nav__icon">
+              <img src="../assets/facebook-clone.png" alt="">
             </md-avatar>
         </nav>
     </div>
@@ -17,13 +17,7 @@ Vue.use(MdAvatar)
 
 export default {
     name: 'Navbar',
-    props: {
-        icon: {
-            type: String,
-            required: true,
-            default: './assets/facebook-clone.png'
-        }
-    }
+    props: ['icon']
 }
 </script >
 
@@ -35,5 +29,13 @@ export default {
     position: sticky;
     top: 0;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.nav__icon img{
+    flex: 0;
+ 
 }
 </style>

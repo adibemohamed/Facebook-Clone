@@ -91,6 +91,7 @@ export default {
   border: 1px solid lightgray;
   border-radius: 10px;
   padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 .post__postHeader {
   padding: 10px;
