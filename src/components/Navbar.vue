@@ -5,6 +5,12 @@
               <img src="../assets/facebook-clone.png" alt="">
             </md-avatar>
         </nav>
+    <div class="navbar__mainMenu">
+        
+    </div>
+    <div class="navbar__userMenu">
+
+    </div>
     </div>
 </template>
 
@@ -32,6 +38,12 @@ export default {
     display: flex;
     align-items: center;
     padding: 0px 10px;
+}
+.navbar__mainMenu {
+    display: flex;
+}
+.navbar__userMenu {
+    display: flex;
 }
 
 .nav__icon img{
