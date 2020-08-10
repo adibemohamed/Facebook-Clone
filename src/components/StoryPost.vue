@@ -21,8 +21,7 @@ export default {
 
 <style scoped>
 #storyPost {
-  height: 230px;
-  max-height: 286px;
+  height: 100%;
   width: 24%;
   border-radius: 10px;
   margin: 0 4px;
@@ -34,21 +33,23 @@ export default {
 #storyPost:hover * {
   background-color: lightgray;
 }
+.storyPost__userImg {
+  height: 60%;
+}
 .storyPost__userImg img {
   width: 100%;
-  height: 150px;
   object-fit: cover;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px; 
+  height: 100%;
 }
-.storyPost__userImg img:hover {
-}
+
 .storyPost__add {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 0px 0px 10px 10px;
-  height: 80px;
+  border-radius: 0px 0px 10px 10px;   
+  height: 40%;
 }
 .storyPost__add > img {
   border-radius: 100%;

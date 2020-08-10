@@ -34,8 +34,7 @@ export default {
 
 <style scoped>
 #story {
-  height: 230px;
-  max-height: 286px;
+  height: 100%;
   width: 24%;
   background: black;
   border-radius: 10px;
