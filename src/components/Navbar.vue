@@ -6,10 +6,10 @@
             </md-avatar>
         </nav>
     <div class="navbar__mainMenu">
-        
+        <NavbarMain />
     </div>
     <div class="navbar__userMenu">
-
+        <NavbarUser />
     </div>
     </div>
 </template>
@@ -19,11 +19,17 @@
 import Vue from 'vue'
 import {MdAvatar} from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
+import NavbarMain from './Menus/NavbarMain.vue'
+import NavbarUser from './Menus/NavbarUser'
+
 Vue.use(MdAvatar)
+Vue.use(NavbarMain)
+Vue.use(NavbarUser)
+
 
 export default {
     name: 'Navbar',
-    props: ['icon']
+    props: ['icon'],
 }
 </script >
 
