@@ -1,59 +1,40 @@
 <template>
-    <div id="navbar">
-        <nav>
-            <md-avatar class="nav__icon">
-              <img src="../assets/facebook-clone.png" alt="">
-            </md-avatar>
-        </nav>
-    <div class="navbar__mainMenu">
-        <NavbarMain />
-    </div>
-    <div class="navbar__userMenu">
-        <NavbarUser />
-    </div>
-    </div>
+  <div >
+    <nav id="navbar">
+      <md-avatar class="nav__icon">
+        <img src="../assets/facebook-clone.png" alt="" />
+      </md-avatar>
+    </nav>
+  </div>
 </template>
 
 <script>
+import Vue from "vue";
+import { MdAvatar } from "vue-material/dist/components";
+import "vue-material/dist/vue-material.min.css"; 
 
-import Vue from 'vue'
-import {MdAvatar} from 'vue-material/dist/components'
-import 'vue-material/dist/vue-material.min.css'
-import NavbarMain from './Menus/NavbarMain.vue'
-import NavbarUser from './Menus/NavbarUser'
-
-Vue.use(MdAvatar)
-Vue.use(NavbarMain)
-Vue.use(NavbarUser)
-
+Vue.use(MdAvatar); 
 
 export default {
-    name: 'Navbar',
-    props: ['icon'],
-}
-</script >
+  name: "Navbar",
+  props: ["icon"], 
+};
+</script>
 
 <style scoped>
 #navbar {
-    background-color: white;
-    height: 60px;
-    border-bottom: 1px solid lightgray;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    padding: 0px 10px;
+  background-color: white;
+  height: 60px;
+  border-bottom: 1px solid lightgray;
+  position: sticky;
+  top: 0;
+  z-index: 100;  
+  padding: 0px 10px;   
+  display: flex;
+  align-items: flex-start;
 }
-.navbar__mainMenu {
-    display: flex;
+.nav__icon {
+     float: ;
 }
-.navbar__userMenu {
-    display: flex;
-}
-
-.nav__icon img{
-    flex: 0;
  
-}
 </style>
