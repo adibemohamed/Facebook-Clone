@@ -1,6 +1,6 @@
 <template>
-  <div >
-    <nav id="navbar">
+  <div  id="navbar">
+    <nav>
       <md-avatar class="nav__icon">
         <img src="../assets/facebook-clone.png" alt="" />
       </md-avatar>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-#navbar {
+#navbar, nav {
   background-color: white;
   height: 60px;
   border-bottom: 1px solid lightgray;
@@ -32,9 +32,10 @@ export default {
   padding: 0px 10px;   
   display: flex;
   align-items: flex-start;
+
 }
-.nav__icon {
-     float: ;
+.nav__icon { 
+  flex: 0;
 }
  
 </style>
