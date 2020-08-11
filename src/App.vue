@@ -36,6 +36,9 @@ import Story from "./components/Story.vue";
 import StoryPost from "./components/StoryPost.vue"
 import PostCreate from './components/PostCreate.vue'
 
+import "@fortawesome/fontawesome-free/css/all.css"
+import "@fortawesome/fontawesome-free/js/all.js";
+
 export default {
   name: "App",
   components: {
