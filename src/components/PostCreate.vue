@@ -20,22 +20,43 @@
     <md-dialog :md-active.sync="showDialog">
       <md-dialog-title class="dialog__header">
         <span class="dialog__title">Create post</span>
-        <md-avatar class="dialog__close md-avatar-icon" @click="showDialog = false">X</md-avatar>
-      </md-dialog-title>
-      <div>
-        <div class="post__userAria">
-          <p class="post__userName pointer hover__underline">
-            <strong>Adibe Mohamed</strong>
-          </p>
-          <p class="post__time secondary">8 August at 16:45</p>
-        </div>
-      </div>
-      <md-tabs md-dynamic-height> </md-tabs>
-      <md-dialog-actions>
-        <md-button class="md-primary dialog__postBtn" @click="showDialog = false"
-          >Post</md-button
+        <md-avatar
+          class="dialog__close md-avatar-icon"
+          @click="showDialog = false"
+          >X</md-avatar
         >
-      </md-dialog-actions>
+      </md-dialog-title>
+      <div class="dialog__body">
+        <div class="dialog__userAria">
+          <md-avatar class="dialog__userAvatar pointer">
+            <img v-bind:src="userImgUrl" alt />
+          </md-avatar>
+          <div class="dialog__user">
+            <p class="dialog__userName pointer hover__underline">
+              <strong>Adibe Mohamed</strong>
+            </p>
+
+            <div class="dialog__privacy pointer">
+              public
+            </div>
+          </div>
+        </div>
+        <div class="dialog__post">
+          <textarea cols="30" rows="10" placeholder="What's on you mind, {diplay first name here}"></textarea>
+        </div>
+        <div class="dialog__media">
+            <span>Add to you post</span>
+        </div>
+
+        <md-tabs md-dynamic-height> </md-tabs>
+        <md-dialog-actions class="m-0 p-0">
+          <md-button
+            class="md-primary dialog__postBtn"
+            @click="showDialog = false"
+            >Post</md-button
+          >
+        </md-dialog-actions>
+      </div>
     </md-dialog>
   </div>
 </template>
@@ -52,10 +73,10 @@ export default {
   name: "PostCreate",
   data: function() {
     return {
-      userImgUrl:
-        "https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8",
+      userImgUrl: "https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8",
       showDialog: false,
       icon: "../assets/facebook-clone.png",
+      firstName: "Mohamed"
     };
   },
 };
@@ -117,17 +138,83 @@ export default {
 .dialog__header {
   display: flex;
   border-bottom: 1px solid lightgray;
- padding: 10px;
- align-items: center;
+  padding: 10px;
+  align-items: center;
 }
 .dialog__title {
   flex: 1;
   text-align: center;
   font-weight: bold;
-
+  margin: 0;
 }
 .dialog__close {
   flex: 0;
   cursor: pointer;
+}
+.dialog__body {
+  padding: 15px;
+}
+.dialog__userAria {
+  display: flex;
+  align-items: center;
+  padding: 5px 5px 20px 5px;
+}
+.dialog__userAvatar {
+  flex: 0;
+}
+.dialog__user {
+  flex: 1;
+  padding-left: 10px;
+}
+.dialog__privacy {
+  background: lightgray;
+  padding: 3px 10px;
+  width: fit-content;
+  border-radius: 10px;
+}
+.dialog__post > textarea{
+  width: 100%;
+  font-size: 20px;
+  outline: none;
+  border: none; 
+  font-weight: 600;
+  color: #444;
+}
+.dialog__userName {
+  font-weight: 900;
+}
+
+.dialog__media {
+  display: flex;
+  padding: 15px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+.dialog__media span {
+  font-weight: 800;
+}
+.dialog__postBtn {
+  background: #1571E6;
+  width: 100%;
+  color: white!important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+.hover__underline:hover {
+  text-decoration: underline;
+}
+.m-0 {
+  margin: 0;
+}
+.p-0 {
+  padding: 0;
+}
+.md-dialog {
+  z-index: 112220;
+}
+.md-overlay {
+  z-index: 112219;
 }
 </style>
