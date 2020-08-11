@@ -63,6 +63,11 @@ export default {
 }
 body,
 html {
+  --primary-blue: #1571E6;
+  --purple: #9567EE;
+  --green: #42B35D;
+  --orange: #EAB026;
+  --red: #E84F3A;
 }
 #app {
   background-color: #f0f2f5;

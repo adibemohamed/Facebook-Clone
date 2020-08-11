@@ -37,7 +37,7 @@
             </p>
 
             <div class="dialog__privacy pointer">
-              public
+              <i class="fas fa-lock"></i><span>Only me</span><i class="fas fa-sort-down"></i>
             </div>
           </div>
         </div>
@@ -46,6 +46,16 @@
         </div>
         <div class="dialog__media">
             <span>Add to you post</span>
+            <div class="dialog__mediaItems"> 
+            <div>
+                <i class="fas fa-video"></i>
+              <i class="fas fa-images"></i>
+              <i class="fas fa-user-tag"></i>
+              <i class="far fa-smile"></i>
+              <i class="fas fa-map-marker-alt"></i>
+              <i class="fas fa-ellipsis-h"></i>
+            </div>
+            </div>
         </div>
 
         <md-tabs md-dynamic-height> </md-tabs>
@@ -171,7 +181,11 @@ export default {
   background: lightgray;
   padding: 3px 10px;
   width: fit-content;
-  border-radius: 10px;
+  border-radius: 8px;
+}
+.dialog__privacy span {
+  padding: 0px 10px;
+  font-weight: bold;
 }
 .dialog__post > textarea{
   width: 100%;
@@ -192,7 +206,21 @@ export default {
   border-radius: 10px;
 }
 .dialog__media span {
+  flex: 0.5;
   font-weight: 800;
+}
+.dialog__mediaItems {
+  flex: 0.5; 
+}
+.dialog__mediaItems > div {
+  display: flex;
+  align-items: center;
+  align-content: space-between; 
+  font-size: 22px;
+}
+.dialog__mediaItems > div > * {
+  flex: 1;
+  color: var(--green);
 }
 .dialog__postBtn {
   background: #1571E6;
