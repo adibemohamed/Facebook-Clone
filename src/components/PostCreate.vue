@@ -20,10 +20,10 @@
     <md-dialog :md-active.sync="showDialog">
       <md-dialog-title class="dialog__header">
         <span class="dialog__title">Create post</span>
-        <md-avatar
-          class="dialog__close md-avatar-icon"
-          @click="showDialog = false"
-          >X</md-avatar
+        <div
+          class="dialog__close"
+        @click="showDialog = false"
+          >X</div
         >
       </md-dialog-title>
       <div class="dialog__body">
@@ -37,32 +37,37 @@
             </p>
 
             <div class="dialog__privacy pointer">
-              <i class="fas fa-lock"></i><span>Only me</span><i class="fas fa-sort-down"></i>
+              <i class="fas fa-lock"></i><span>Only me</span
+              ><i class="fas fa-sort-down"></i>
             </div>
           </div>
         </div>
         <div class="dialog__post">
-          <textarea cols="30" rows="10" placeholder="What's on you mind, {diplay first name here}"></textarea>
+          <textarea
+            cols="30"
+            rows="10"
+            placeholder="What's on you mind, {diplay first name here}"
+          ></textarea>
         </div>
         <div class="dialog__media">
-            <span>Add to you post</span>
-            <div class="dialog__mediaItems"> 
+          <span>Add to you post</span>
+          <div class="dialog__mediaItems">
             <div>
-                <i class="fas fa-video"></i>
+              <i class="fas fa-video"></i>
               <i class="fas fa-images"></i>
               <i class="fas fa-user-tag"></i>
               <i class="far fa-smile"></i>
               <i class="fas fa-map-marker-alt"></i>
               <i class="fas fa-ellipsis-h"></i>
             </div>
-            </div>
+          </div>
         </div>
 
         <md-tabs md-dynamic-height> </md-tabs>
         <md-dialog-actions class="m-0 p-0">
           <md-button
             class="md-primary dialog__postBtn"
-            @click="showDialog = false"
+            @click="showDialog = false; createPost();" 
             >Post</md-button
           >
         </md-dialog-actions>
@@ -76,7 +81,9 @@ import Vue from "vue";
 import VueMaterial from "vue-material";
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default.css";
-
+import firebase from 'firebase'
+import { db } from "../firebase"
+ 
 
 Vue.use(VueMaterial);
 
@@ -84,11 +91,31 @@ export default {
   name: "PostCreate",
   data: function() {
     return {
-      userImgUrl: "https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8",
+      userImgUrl:
+        "https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8",
       showDialog: false,
       icon: "../assets/facebook-clone.png",
-      firstName: "Mohamed"
+      firstName: "Mohamed",
     };
+  },
+  methods: {
+    createPost() {
+      db.collection("posts"). 
+      add({
+        caption: "this amazing", 
+        imageUrl: "https://iamges", 
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        username: "Mohamed" 
+        }).
+      then(() => {
+          console.log("Document successfully written!")
+      }).
+      catch((error) => {
+          console.error("Error writing document: ", error)
+      })
+
+
+    },
   },
 };
 </script>
@@ -161,6 +188,9 @@ export default {
 .dialog__close {
   flex: 0;
   cursor: pointer;
+  background: lightgray;
+  border-radius: 100%;
+  padding: 5px 11px;
 }
 .dialog__body {
   padding: 15px;
@@ -187,11 +217,11 @@ export default {
   padding: 0px 10px;
   font-weight: bold;
 }
-.dialog__post > textarea{
+.dialog__post > textarea {
   width: 100%;
   font-size: 20px;
   outline: none;
-  border: none; 
+  border: none;
   font-weight: 600;
   color: #444;
 }
@@ -210,12 +240,12 @@ export default {
   font-weight: 800;
 }
 .dialog__mediaItems {
-  flex: 0.5; 
+  flex: 0.5;
 }
 .dialog__mediaItems > div {
   display: flex;
   align-items: center;
-  align-content: space-between; 
+  align-content: space-between;
   font-size: 22px;
 }
 .dialog__mediaItems > div > * {
@@ -223,9 +253,9 @@ export default {
   color: var(--green);
 }
 .dialog__postBtn {
-  background: #1571E6;
+  background: #1571e6;
   width: 100%;
-  color: white!important;
+  color: white !important;
 }
 
 .pointer {
