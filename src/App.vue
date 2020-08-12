@@ -35,9 +35,9 @@ import Navbar from "./components/Navbar.vue";
 import Story from "./components/Story.vue";
 import StoryPost from "./components/StoryPost.vue"
 import PostCreate from './components/PostCreate.vue'
-
 import "@fortawesome/fontawesome-free/css/all.css"
 import "@fortawesome/fontawesome-free/js/all.js";
+import {db} from './firebase';
 
 export default {
   name: "App",
@@ -53,6 +53,32 @@ export default {
       icon: "../assets/facebook-clone.png",
     };
   },
+  methods: {
+    readPost() {
+      let post = [];
+      db.collection("posts")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          post.push({
+            username: doc.data().username,
+            caption: doc.data().caption,
+            imageUrl: doc.data().imageUrl,
+            timestamp: doc.data().timestamp
+          })
+        })
+        console.log("👉 Posts:", post)
+          return post;
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      })
+    
+    }
+  },
+  mounted() {
+    this.readPost()
+  }
 };
 </script>
 
