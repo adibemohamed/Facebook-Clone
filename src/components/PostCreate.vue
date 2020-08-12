@@ -90,6 +90,7 @@ export default {
       firstName: "Mohamed"
     };
   },
+  props: ['username', 'caption', 'imageUrl', 'timestamp']
 };
 </script>
 
