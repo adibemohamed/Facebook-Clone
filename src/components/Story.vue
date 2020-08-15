@@ -17,9 +17,11 @@
 <script>
 import Vue from "vue";
 import { MdAvatar } from "vue-material/dist/components";
-import "vue-material/dist/vue-material.min.css";
+import "vue-material/dist/vue-material.min.css"; 
+
 
 Vue.use(MdAvatar);
+ 
 
 export default {
   name: "Story",
