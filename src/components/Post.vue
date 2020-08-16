@@ -9,14 +9,14 @@
           <p class="post__userName pointer hover__underline">
             <strong>Adibe Mohamed</strong>
           </p>
-          <p class="post__time secondary">8 August at 16:45</p>
+          <p class="post__time secondary">{{ post.timestamp }}</p>
         </div>
       </div>
 
       <div class="post__more pointer hover__gray secondary">...</div>
     </div>
 
-    <h3 class="post__caption"> Hello everbody.Just crash it 🔥 It's Worth it 🚀 </h3>
+    <h3 class="post__caption">{{ post.caption }} </h3> 
     <div class="post__media pointer">
       <img
         src="https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-9/41678515_327688411138792_3693402459851456512_o.jpg?_nc_cat=102&_nc_sid=8bfeb9&_nc_ohc=xVOfFBP42Q8AX-AHuOp&_nc_ht=scontent.fcmn5-1.fna&oh=df93a02ba478cf9708ded327db7f59bb&oe=5F5437EA"
@@ -68,17 +68,19 @@ import { MdAvatar } from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css"; 
 
 Vue.use(MdAvatar);
+ 
 
 export default {
   name: "Post",
   props: {
-    userImgUrl: {
+    post: null,
+    userImgUrl: { 
       type: String,
       required: true,
       default:
         "https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8",
     },
-  },
+  } 
 };
 </script>
 <style >

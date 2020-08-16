@@ -18,13 +18,14 @@
 import Vue from "vue";
 import { MdAvatar } from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css"; 
-
+ 
 
 Vue.use(MdAvatar);
  
 
 export default {
-  name: "Story",
+  name: "Story", 
+  props: ['stories'],
   data: function() {
     return {
       userImgUrl:
@@ -48,6 +49,8 @@ export default {
   border-radius: 10px;
   height: 100%;
   transition: 0.1s all;
+  width: 100%;
+  object-fit: cover;
 }
 .story__mediaImg:hover {
   opacity: 0.8;

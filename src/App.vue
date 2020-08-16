@@ -1,25 +1,23 @@
 <template>
   <div id="app">
-    
     <Navbar icon="icon" />
-    
-      <div id="feed">
-        <div class="feed__stroies">
-          <StoryPost />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-        </div>
-        <div class="feed_postCrete">
-          <PostCreate />
-        </div>
 
-        <Post
-          userImgUrl="https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8"
-        />
+    <div id="feed">
+      <div class="feed__stroies">
+        <StoryPost />
+        <Story />
       </div>
-    
+      <div class="feed_postCreate">
+        <PostCreate />
+      </div>
+      <div
+        class="feed__posts"
+        v-for="(post, index) in posts"
+        v-bind:key="index"
+      > 
+        <Post :post="post" userImgUrl="" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,18 +25,11 @@
 import Post from "./components/Post.vue";
 import Navbar from "./components/Navbar.vue";
 import Story from "./components/Story.vue";
-import StoryPost from "./components/StoryPost.vue"
-import PostCreate from './components/PostCreate.vue'
-import "@fortawesome/fontawesome-free/css/all.css"
+import StoryPost from "./components/StoryPost.vue";
+import PostCreate from "./components/PostCreate.vue";
+import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
-import {db} from './firebase';
-
-db.collection("posts")
-.get()
-.then(querySnapshot => {
-  const documents = querySnapshot.docs.map(doc => doc.data());
-  console.log("🔥 💵 ", documents);
-})
+import { db } from "./firebase";
 
 export default {
   name: "App",
@@ -52,34 +43,35 @@ export default {
   data: function() {
     return {
       icon: "../assets/facebook-clone.png",
+      posts: [],
     };
   },
   methods: {
     readPost() {
-      let post = [];
+      let posts = [];
       db.collection("posts")
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          post.push({
-            username: doc.data().username,
-            caption: doc.data().caption,
-            imageUrl: doc.data().imageUrl,
-            timestamp: doc.data().timestamp
-          })
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            posts.push({
+              username: doc.data().username,
+              caption: doc.data().caption,
+              imageUrl: doc.data().imageUrl,
+              timestamp: doc.data().timestamp,
+            });
+          });
+          return posts;
         })
-        console.log("👉 Posts:", post)
-          return post;
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      })
-    
-    }
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+
+      return posts
+    },
   },
   mounted() {
-    this.readPost()
-  }
+    this.posts = this.readPost(); 
+  },
 };
 </script>
 
@@ -90,11 +82,11 @@ export default {
 }
 body,
 html {
-  --primary-blue: #1571E6;
-  --purple: #9567EE;
-  --green: #42B35D;
-  --orange: #EAB026;
-  --red: #E84F3A;
+  --primary-blue: #1571e6;
+  --purple: #9567ee;
+  --green: #42b35d;
+  --orange: #eab026;
+  --red: #e84f3a;
 }
 #app {
   background-color: #f0f2f5;

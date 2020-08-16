@@ -127,6 +127,7 @@ export default {
   max-width: 700px;
   background: white;
   box-shadow: 1px 5px 18px 0px #00000029;
+  height: 520px;
 }
 
 .md-overlay {
