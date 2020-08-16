@@ -6,6 +6,9 @@
       <div class="feed__stroies">
         <StoryPost />
         <Story />
+        <Story />
+        <Story />
+        <Story />
       </div>
       <div class="feed_postCreate">
         <PostCreate />
@@ -47,31 +50,35 @@ export default {
     };
   },
   methods: {
-    readPost() {
-      let posts = [];
-      db.collection("posts")
-        .get()
-        .then((querySnapshot) => {
+    
+  },
+  mounted: function(){
+    db.collection("posts") 
+        .onSnapshot((querySnapshot) => {
+          const postCollection = []
           querySnapshot.forEach((doc) => {
-            posts.push({
+            postCollection.push({
               username: doc.data().username,
               caption: doc.data().caption,
               imageUrl: doc.data().imageUrl,
               timestamp: doc.data().timestamp,
             });
           });
-          return posts;
-        })
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
-        });
 
-      return posts
-    },
+          this.posts = postCollection;
+          
+        })
+        // .catch((error) => {
+        //   console.log("Error getting documents: ", error);
+        // });
+
   },
-  mounted() {
-    this.posts = this.readPost(); 
-  },
+  
+  computed: {
+    // getPosts: function() {
+    //   //return this.posts;
+    // }
+  }
 };
 </script>
 
@@ -86,7 +93,7 @@ html {
   --purple: #9567ee;
   --green: #42b35d;
   --orange: #eab026;
-  --red: #e84f3a;
+  --red: #e84f3a; 
 }
 #app {
   background-color: #f0f2f5;
