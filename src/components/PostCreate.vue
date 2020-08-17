@@ -117,6 +117,7 @@ export default {
         .then(url => {
           db.collection("posts")
             .add({
+             
               caption: this.caption,
               imageUrl: url,
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -126,13 +127,14 @@ export default {
               console.log("Document successfully written!");
             })
             .catch((error) => {
+               console.log("👉 ", this.imageUrl);
+      console.log("👉 ", this.username);
+      console.log("👉 ", this.caption);
               console.error("Error writing document: ", error);
             });
         });
 
-      console.log("👉 ", this.imageUrl);
-      console.log("👉 ", this.username);
-      console.log("👉 ", this.caption);
+     
     },
     setImageUrl(e) { 
       if(e.target.files[0]) {

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+ 
     <Navbar icon="icon" />
 
     <div id="feed">
@@ -32,7 +33,7 @@ import StoryPost from "./components/StoryPost.vue";
 import PostCreate from "./components/PostCreate.vue";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
-import { db } from "./firebase"; 
+import { db, auth } from "./firebase"; 
  
 export default {
   name: "App",
@@ -72,6 +73,19 @@ export default {
         //   console.log("Error getting documents: ", error);
         // });
 
+      const email = "adibe@gmail.com";
+      const password = "adibe123";
+      const username = "adibemohamed"
+      auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        return authUser.user.updateProfile({
+          username: username,
+        });
+      })
+      .catch((error) => alert(error.message));
+
+       
   },
   
   computed: {
