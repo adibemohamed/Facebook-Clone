@@ -67,4 +67,8 @@ export default {
 
 <style>
 
+.login {
+  margin: auto;
+}
+
 </style>
