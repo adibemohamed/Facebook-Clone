@@ -20,11 +20,7 @@
     <md-dialog :md-active.sync="showDialog">
       <md-dialog-title class="dialog__header">
         <span class="dialog__title">Create post</span>
-        <div
-          class="dialog__close"
-        @click="showDialog = false"
-          >X</div
-        >
+        <div class="dialog__close" @click="showDialog = false">X</div>
       </md-dialog-title>
       <div class="dialog__body">
         <div class="dialog__userAria">
@@ -55,10 +51,15 @@
           <div class="dialog__mediaItems">
             <div>
               <i class="fas fa-video"></i>
-              
+
               <div class="dialog__mediaImage">
                 <label for="fileUpload"><i class="fas fa-images"></i></label>
-                <input @change="setImageUrl" id="fileUpload" aria-label="chose" type="file"/>
+                <input
+                  @change="setImageUrl"
+                  id="fileUpload"
+                  aria-label="chose"
+                  type="file"
+                />
               </div>
               <i class="fas fa-user-tag"></i>
               <i class="far fa-smile"></i>
@@ -72,7 +73,10 @@
         <md-dialog-actions class="m-0 p-0">
           <md-button
             class="md-primary dialog__postBtn"
-            @click="showDialog = false; createPost();" 
+            @click="
+              showDialog = false;
+              createPost();
+            "
             >Post</md-button
           >
         </md-dialog-actions>
@@ -86,9 +90,8 @@ import Vue from "vue";
 import VueMaterial from "vue-material";
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default.css";
-import firebase from 'firebase'
-import { db } from "../firebase"
- 
+import firebase from "firebase";
+import { db, storage } from "../firebase";
 
 Vue.use(VueMaterial);
 
@@ -100,41 +103,47 @@ export default {
       username: "Adibe Mohamed",
       timetamp: null,
       caption: null,
-      media: null,
-      placeholder: "What's on you mind, " + this.username
+      imageUrl: null,
+      placeholder: "What's on you mind, " + this.username,
+      userImgUrl: null,
     };
-  }, 
+  },
   methods: {
     createPost() {
-       db.collection("posts"). 
-      add({
-        caption: this.caption,
-        imageUrl: this.imageUrl, 
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        username: this.username 
-        }).
-      then(() => {
-          console.log("Document successfully written!")
-      }).
-      catch((error) => {
-          console.error("Error writing document: ", error)
-      })
+      storage
+        .ref("images")
+        .child(this.imageUrl.name)
+        .getDownloadURL()
+        .then(url => {
+          db.collection("posts")
+            .add({
+              caption: this.caption,
+              imageUrl: url,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              username: this.username,
+            })
+            .then(() => {
+              console.log("Document successfully written!");
+            })
+            .catch((error) => {
+              console.error("Error writing document: ", error);
+            });
+        });
 
       console.log("👉 ", this.imageUrl);
-
-
+      console.log("👉 ", this.username);
+      console.log("👉 ", this.caption);
     },
     setImageUrl(e) {
       var file = e.target.files || e.dataTransfer.files;
-      if(!file.length) return;
+      if (!file.length) return;
       this.imageUrl = file;
-    } 
-  }, 
+    },
+  },
 };
 </script>
 
 <style>
-
 .md-overlay {
   background-color: #f4f4f4cc;
 }
@@ -264,8 +273,8 @@ export default {
   width: 100%;
   color: white !important;
 }
-.dialog__mediaImage input[type="file"]{
-display: none;
+.dialog__mediaImage input[type="file"] {
+  display: none;
 }
 .pointer {
   cursor: pointer;
