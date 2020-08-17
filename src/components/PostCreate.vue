@@ -134,10 +134,10 @@ export default {
       console.log("👉 ", this.username);
       console.log("👉 ", this.caption);
     },
-    setImageUrl(e) {
-      var file = e.target.files || e.dataTransfer.files;
-      if (!file.length) return;
-      this.imageUrl = file;
+    setImageUrl(e) { 
+      if(e.target.files[0]) {
+        this.imageUrl = e.target.files[0]
+      }
     },
   },
 };
