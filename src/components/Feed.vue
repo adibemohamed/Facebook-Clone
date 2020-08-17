@@ -45,5 +45,19 @@ export default {
 </script>
 
 <style>
-
+#feed {
+  margin: auto;
+  max-width: 700px;
+  padding: 0px 20px;
+}
+.feed__stroies {
+  height: 286px;
+  max-height: 286px;
+  padding: 20px 0px 40px 0px;
+  display: flex;
+}
+@media screen and (max-width: 600px) {
+  .feed__stroies {
+    height: 240px;
+  }
 </style>
