@@ -37,16 +37,17 @@
             </p>
 
             <div class="dialog__privacy pointer">
-              <i class="fas fa-lock"></i><span>Only me</span
+              <i class="fas fa-lock"></i><span>public</span
               ><i class="fas fa-sort-down"></i>
             </div>
           </div>
         </div>
         <div class="dialog__post">
           <textarea
+            v-model="caption"
             cols="30"
             rows="10"
-            placeholder="What's on you mind, {diplay first name here}"
+            :placeholder="placeholder"
           ></textarea>
         </div>
         <div class="dialog__media">
@@ -54,7 +55,11 @@
           <div class="dialog__mediaItems">
             <div>
               <i class="fas fa-video"></i>
-              <i class="fas fa-images"></i>
+              
+              <div class="dialog__mediaImage">
+                <label for="fileUpload"><i class="fas fa-images"></i></label>
+                <input @change="setImageUrl" id="fileUpload" aria-label="chose" type="file"/>
+              </div>
               <i class="fas fa-user-tag"></i>
               <i class="far fa-smile"></i>
               <i class="fas fa-map-marker-alt"></i>
@@ -92,20 +97,21 @@ export default {
   data: function() {
     return {
       showDialog: false,
-      username: null,
+      username: "Adibe Mohamed",
       timetamp: null,
       caption: null,
-      media: null
+      media: null,
+      placeholder: "What's on you mind, " + this.username
     };
   }, 
   methods: {
     createPost() {
-      db.collection("posts"). 
+       db.collection("posts"). 
       add({
-        caption: "YO YO YO YO  YO🔥 🔥 🔥 🔥 🔥 🔥 🔥 ",
-        imageUrl: "https://iamges", 
+        caption: this.caption,
+        imageUrl: this.imageUrl, 
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        username: "Mohamed" 
+        username: this.username 
         }).
       then(() => {
           console.log("Document successfully written!")
@@ -114,21 +120,20 @@ export default {
           console.error("Error writing document: ", error)
       })
 
+      console.log("👉 ", this.imageUrl);
+
 
     },
+    setImageUrl(e) {
+      var file = e.target.files || e.dataTransfer.files;
+      if(!file.length) return;
+      this.imageUrl = file;
+    } 
   }, 
 };
 </script>
 
 <style>
-.md-dialog /deep/.md-dialog-container {
-  width: 500px;
-  border-radius: 8px;
-  max-width: 700px;
-  background: white;
-  box-shadow: 1px 5px 18px 0px #00000029;
-  height: 520px;
-}
 
 .md-overlay {
   background-color: #f4f4f4cc;
@@ -167,12 +172,13 @@ export default {
   padding: 12px;
   border-radius: 10px;
 }
-
-.hover__gray:hover {
-  background-color: #f0f2f5;
-}
-.pointer {
-  cursor: pointer;
+.md-dialog /deep/.md-dialog-container {
+  width: 500px;
+  border-radius: 8px;
+  max-width: 700px;
+  background: white;
+  box-shadow: 1px 5px 18px 0px #00000029;
+  height: 520px;
 }
 .dialog__header {
   display: flex;
@@ -258,7 +264,9 @@ export default {
   width: 100%;
   color: white !important;
 }
-
+.dialog__mediaImage input[type="file"]{
+display: none;
+}
 .pointer {
   cursor: pointer;
 }
@@ -276,5 +284,12 @@ export default {
 }
 .md-overlay {
   z-index: 112219;
+}
+
+.hover__gray:hover {
+  background-color: #f0f2f5;
+}
+.pointer {
+  cursor: pointer;
 }
 </style>
