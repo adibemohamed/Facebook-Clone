@@ -60,4 +60,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.singup {
+  margin: auto;
+}
+
+</style>
