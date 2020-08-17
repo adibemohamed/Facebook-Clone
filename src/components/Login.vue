@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1>Login</h1>
-    <!-- <form novalidate class="md-layout" @submit.prevent="validateUser">
+    <form novalidate class="md-layout" @submit.prevent="validateUser">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
-          <div class="md-title">Users</div>
+          <div class="md-title">Login</div>
         </md-card-header>
 
         <md-card-content>
@@ -50,14 +50,21 @@
           >
         </md-card-actions>
       </md-card>
-    </form> -->
+    </form>
   </div>
 </template>
 
 <script>
+ import Vue from 'Vue'
+ import {MdLayout} from 'vue-material'
+ 
+Vue.use(MdLayout);
+
 export default {
   name: "Login",
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
