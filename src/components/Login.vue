@@ -1,6 +1,7 @@
 <template>
   <div>
-    <form novalidate class="md-layout" @submit.prevent="validateUser">
+    <h1>Login</h1>
+    <!-- <form novalidate class="md-layout" @submit.prevent="validateUser">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
           <div class="md-title">Users</div>
@@ -49,7 +50,7 @@
           >
         </md-card-actions>
       </md-card>
-    </form>
+    </form> -->
   </div>
 </template>
 

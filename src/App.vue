@@ -32,21 +32,8 @@ import StoryPost from "./components/StoryPost.vue";
 import PostCreate from "./components/PostCreate.vue";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
-import { db } from "./firebase";
-import { component } from 'vue/types/umd';
-
-const Login = null;
-const App;
-
-const routes = [
-  {path: '/', component : App},
-  {path: '/login', component: Login}
-]
-
-const router = new VueRouter({
-  routes
-})
-
+import { db } from "./firebase"; 
+ 
 export default {
   name: "App",
   components: {
