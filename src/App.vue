@@ -1,53 +1,25 @@
 <template>
   <div id="app">
- 
-    <Navbar icon="icon" />
-
-    <div id="feed">
-      <div class="feed__stroies">
-        <StoryPost />
-        <Story />
-        <Story />
-        <Story />
-        <Story />
-      </div>
-      <div class="feed_postCreate">
-        <PostCreate />
-      </div>
-      <div
-        class="feed__posts"
-        v-for="(post, index) in posts"
-        v-bind:key="index"
-      > 
-        <Post :post="post" userImgUrl="" />
-      </div>
-    </div>
+    <router-view
+      v-bind:posts="posts" 
+    ></router-view>
   </div>
 </template>
 
 <script>
-import Post from "./components/Post.vue";
-import Navbar from "./components/Navbar.vue";
-import Story from "./components/Story.vue";
-import StoryPost from "./components/StoryPost.vue";
-import PostCreate from "./components/PostCreate.vue";
+
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
-import { db, auth } from "./firebase"; 
+import { db } from "./firebase"; 
  
 export default {
   name: "App",
   components: {
-    Navbar,
-    Post,
-    PostCreate,
-    Story,
-    StoryPost,
   },
   data: function() {
     return {
       icon: "../assets/facebook-clone.png",
-      posts: [],
+      posts: [], 
     };
   },
   methods: {
@@ -73,17 +45,17 @@ export default {
         //   console.log("Error getting documents: ", error);
         // });
 
-      const email = "adibe@gmail.com";
-      const password = "adibe123";
-      const username = "adibemohamed"
-      auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((authUser) => {
-        return authUser.user.updateProfile({
-          username: username,
-        });
-      })
-      .catch((error) => alert(error.message));
+      // const email = "adibe@gmail.com";
+      // const password = "adibe123";
+      // const username = "adibemohamed"
+      // auth
+      // .createUserWithEmailAndPassword(email, password)
+      // .then((authUser) => {
+      //   return authUser.user.updateProfile({
+      //     username: username,
+      //   });
+      // })
+      // .catch((error) => console.log("🔴 ", error.message));
 
        
   },

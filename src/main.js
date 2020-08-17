@@ -1,19 +1,24 @@
 import Vue from "vue";
 import App from "./App.vue";
-// import VueRouter from "vue-router";
-// import Login from "./components/Login.vue";
-// import Signup from "./components/Singup.vue";
+import VueRouter from 'vue-router';
+import Feed from './components/Feed.vue';
+import Login from "./components/Login.vue";
+import Signup from "./components/Singup.vue";
 
-// Vue.use(VueRouter);
+Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
 
-// const router = [ 
-//   { path: "/login", component: Login },
-//   { path: "/signup", component: Signup },
-// ];
+ 
+const router = new VueRouter({
+  routes: [
+    { path: "*", component: Feed},
+    { path: "/login", component: Login },
+    { path: "/singup", component: Signup },
+  ]
+})
 
 new Vue({
   render: (h) => h(App),
-  // router,
+  router,
 }).$mount("#app");

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Singup</h1>
     <!-- <form novalidate class="md-layout" @submit.prevent="validateUser">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
@@ -55,7 +56,7 @@
 
 <script>
 export default {
-  name: "Singup",
+  name: "Signup",
 };
 </script>
 
