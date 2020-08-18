@@ -65,7 +65,7 @@ export default {
 <style>
 .login { 
   margin: 0 auto;
-  max-width: 680px;
-  padding-top: 150px;
+  max-width: 700px;
+  padding: 150px 20px 0px 20px;
 }
 </style>

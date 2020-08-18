@@ -159,10 +159,10 @@ export default {
 </script>
 
 <style>
-.signup {
-  max-width: 680px;
-  margin: auto;
-  padding-top: 150px;
+.signup { 
+  margin: auto; 
+  max-width: 700px;
+  padding: 150px 20px 0px 20px;
 }
 
 </style>
