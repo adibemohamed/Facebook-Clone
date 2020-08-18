@@ -60,4 +60,5 @@ export default {
   .feed__stroies {
     height: 240px;
   }
+}
 </style>

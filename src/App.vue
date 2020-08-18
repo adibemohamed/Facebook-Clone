@@ -7,10 +7,15 @@
 </template>
 
 <script>
-
+import Vue from "vue";
+import VueMaterial from "vue-material";
+import "vue-material/dist/vue-material.min.css";
+import "vue-material/dist/theme/default.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 import { db } from "./firebase"; 
+
+ Vue.use(VueMaterial);
  
 export default {
   name: "App",
@@ -86,6 +91,5 @@ html {
   width: 100%;
   height: 100%;
 }
-
-}
+ 
 </style>
