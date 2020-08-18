@@ -55,8 +55,15 @@ export default {
         console.log("Signin failled! ", error);
       })
 
-      this.$store.state.loggedin = true;
-      console.log(this.$store.state.loggedin);
+      // this.$store.commit('setOpenSignIn', {openSignIn: true})
+      this.$store.commit({
+        type: "setOpenSignIn",
+        openSignIn: true
+      })
+      console.log(this.$store.state.openSignIn);
+
+      this.$router.push('/')
+      
     }
   }
 };

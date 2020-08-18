@@ -26,10 +26,7 @@ export default {
       icon: "../assets/facebook-clone.png",
       posts: [], 
     };
-  },
-  methods: {
-    
-  },
+  }, 
   mounted: function(){
     db.collection("posts") 
         .onSnapshot((querySnapshot) => {

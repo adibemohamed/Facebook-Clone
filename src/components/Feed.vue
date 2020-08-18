@@ -30,7 +30,6 @@ import Navbar from "./Navbar.vue";
 import Story from "./Story.vue";
 import StoryPost from "./StoryPost.vue";
 import PostCreate from "./PostCreate.vue";
-import { auth } from '../firebase';
 
 export default {
     name: "Feed" ,
@@ -42,11 +41,7 @@ export default {
     StoryPost,
   },
   props: ['posts', 'userImgUrl'],
-  methods: {
-    logout(){
-      auth.logout();
-    }
-  }
+ 
 }
 </script>
 
