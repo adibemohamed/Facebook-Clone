@@ -10,12 +10,29 @@ Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
 
- 
+const isAuthenticated = false;
+
 const router = new VueRouter({
-  routes: [
-    { path: "*", component: Feed},
-    { path: "/login", component: Login },
-    { path: "/singup", component: Signup },
+  routes: [{
+      path: "*",
+      component: Feed,
+      beforeEnter:(to, from, next) => {
+       if(!isAuthenticated) {
+         next('/login');
+        }
+        else {
+          next('/');
+        }
+      }
+    },
+    {
+      path: "/login",
+      component: Login
+    },
+    {
+      path: "/singup",
+      component: Signup
+    },
   ]
 })
 
