@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Feed from './components/Feed.vue';
 import Login from "./components/Login.vue";
 import Signup from "./components/Singup.vue";
+import store from './store/index'
 
 Vue.use(VueRouter);
 
@@ -21,4 +22,5 @@ const router = new VueRouter({
 new Vue({
   render: (h) => h(App),
   router,
+  store
 }).$mount("#app");

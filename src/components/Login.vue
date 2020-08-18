@@ -41,8 +41,7 @@ export default {
        form: {
          login_email: null,
          login_password: null
-       },
-       loggedin: false
+       }
     })
   },
   methods: {
@@ -56,7 +55,8 @@ export default {
         console.log("Signin failled! ", error);
       })
 
-      this.loggedin = true;
+      this.$store.state.loggedin = true;
+      console.log(this.$store.state.loggedin);
     }
   }
 };
