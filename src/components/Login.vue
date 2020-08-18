@@ -30,6 +30,7 @@
 </template>
 
 <script> 
+import { auth } from '../firebase';
 
  
 
@@ -40,12 +41,22 @@ export default {
        form: {
          login_email: null,
          login_password: null
-       }
+       },
+       loggedin: false
     })
   },
   methods: {
     login() {
-      console.log("🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 ")
+      auth
+      .signInWithEmailAndPassword(this.form.login_email, this.form.login_password)
+      .then(
+        console.log("You are singed in 👏 👏 👏 👏 ")
+      )
+      .catch(error => {
+        console.log("Signin failled! ", error);
+      })
+
+      this.loggedin = true;
     }
   }
 };
