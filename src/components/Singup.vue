@@ -149,7 +149,11 @@ export default {
     singup() {
       auth
       .createUserWithEmailAndPassword(this.form.email, this.form.password)
-      .then()
+      .then(authUser => {
+        return authUser.user.updateProfile({
+          displayName: this.lastName +"."+ this.firstName
+        })
+      })
       .catch(error => {
         console.log("Can't create you account: ", error)
       })

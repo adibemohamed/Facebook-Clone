@@ -10,6 +10,7 @@
         class="md-primary dialog__postBtn"
         @click="logout"
         >Logout</md-button>  <md-button 
+        @click="login"
            v-else
         class="md-primary dialog__postBtn" 
         >Login</md-button> 
@@ -26,10 +27,13 @@ export default {
   props: ["icon"],
   methods:  { 
     logout(){
-      this.$store.commit('setOpenSingIn', false);
+      this.$store.commit('setOpenSignIn', false);
       auth.logout();
       this.$router.push('/login')
-    } 
+    },
+    login(){
+      this.$router.push('/login')
+    }
   }
 };
 </script>

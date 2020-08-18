@@ -3,12 +3,20 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
-        openSignIn: false
+        openSignIn: false,
+        loggedUser: null
     },
-    getters: {},
+    getters: {
+        user: state => {
+            return state.loggedUser;
+        }
+    },
     mutations: {
         setOpenSignIn(state, payload) {
             state.openSignIn = payload;
+        },
+        setUser(state, payload) {
+            state.loggedUser = payload;
         }
     },
     actions: {}
