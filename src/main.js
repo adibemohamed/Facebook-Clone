@@ -10,31 +10,36 @@ Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
 
-const isAuthenticated = false;
+const isAuthenticated = store.state.openSignIn;
+console.log(isAuthenticated);
+
+const authGuard = (from, to, next) => {
+  if (!isAuthenticated) {
+    next('/login');
+  }
+  else {
+    next('/');
+  }
+}
 
 const router = new VueRouter({
   routes: [{
-      path: "*",
-      component: Feed,
-      beforeEnter:(to, from, next) => {
-       if(!isAuthenticated) {
-         next('/login');
-        }
-        else {
-          next('/');
-        }
-      }
-    },
-    {
-      path: "/login",
-      component: Login
-    },
-    {
-      path: "/singup",
-      component: Signup
-    },
+    path: "*",
+    component: Feed,
+    beforeEnter: authGuard
+  },
+  {
+    path: "/login",
+    component: Login
+  },
+  {
+    path: "/singup",
+    component: Signup
+  },
   ]
 })
+
+
 
 new Vue({
   render: (h) => h(App),

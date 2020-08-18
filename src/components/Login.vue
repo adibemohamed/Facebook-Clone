@@ -52,23 +52,19 @@ export default {
   },
   methods: {
     login() {
-     auth
-        .signInWithEmailAndPassword(
-          this.form.login_email,
-          this.form.login_password
-        )
-        .then(authUser => {
-          this.$store.commit("setUser", authUser.user); 
-        })
-        .catch((error) => {
-          console.log("Signin failled! ", error);
-        });
+      auth
+      .signInWithEmailAndPassword(
+        this.form.login_email,
+        this.form.login_password
+      )
+      .then((authUser) => {
+        this.$store.commit("setUser", authUser.user);
+      })
+      .catch((error) => {
+        console.log("Signin failled! ", error);
+      });
 
-      // this.$store.commit('setOpenSignIn', {openSignIn: true})
-      this.$store.commit({
-        type: "setOpenSignIn",
-        openSignIn: true,
-      }); 
+      this.$store.commit("setOpenSignIn", true);
       this.$router.push("/");
     },
   },
