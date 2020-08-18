@@ -1,6 +1,6 @@
 <template>
   <div> 
-    <form  class="md-layout">
+    <form novalidate class="md-layout" @submit.prevent="sinpup">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
           <div class="md-title">Singup</div>
@@ -55,8 +55,22 @@
             <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="send" />
             <span class="md-error" v-if="!$v.form.email.required">The email is required</span>
             <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
+          </md-field> 
+
+          <md-field :class="Validate('password')">
+            <label for="password">password</label>
+            <md-input type="password" name="password" id="password" v-model="form.password" :disabled="send" />
+            <span class="md-error" v-if="!$v.form.password.required">The password is required</span>
+            <span class="md-error" v-else-if="!$v.form.password.password">Invalid password</span>
           </md-field>
         </md-card-content>
+
+          <md-field :class="Validate('password_confirm')">
+            <label for="password_confirm">password_confirm</label>
+            <md-input type="password" name="password_confirm" id="password_confirm" v-model="form.password_confirm" :disabled="send" />
+            <span class="md-error" v-if="!$v.form.password_confirm.required">The password confirm is required</span>
+            <span class="md-error" v-else-if="!$v.form.password_confirm.password_confirm">Invalid password confirm</span>
+          </md-field> 
 
         <md-progress-bar md-mode="indeterminate" v-if="send" />
 
@@ -111,6 +125,7 @@ export default {
         age: null,
         email: null,
         password: null,
+        password_confirm: null
        
       },
        send: false
@@ -126,8 +141,8 @@ export default {
       }
     },
     singup() {
-      console.log("🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 ")
-    }
+     console.log("🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 ")
+    } 
   }
 };
 </script>

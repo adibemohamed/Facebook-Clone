@@ -1,33 +1,30 @@
 <template>
-  <div class="login">
-    <h1>Login</h1>
-    <form class="md-layout">
+  <div> 
+    <form novalidate class="md-layout" @submit.prevent="login">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
           <div class="md-title">Login</div>
         </md-card-header>
 
         <md-card-content>
-          <md-field>
+ 
+          <md-field >
             <label for="email">Email</label>
-            <md-input
-              type="email"
-              name="email"
-              id="email"
-              autocomplete="email"
-            />
+            <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.login_email"  /> 
+          </md-field> 
+
+          <md-field  >
+            <label for="password">password</label>
+            <md-input type="password" name="password" id="password" v-model="form.login_password"  /> 
           </md-field>
         </md-card-content>
-
-        <md-field>
-          <label for="email">Password</label>
-          <md-input type="password" name="password" id="password" />
-        </md-field>
+  
 
         <md-card-actions>
-          <md-button type="submit" class="md-primary">Create user</md-button>
+          <md-button type="submit" class="md-primary"  >Login</md-button>
         </md-card-actions>
       </md-card>
+ 
     </form>
   </div>
 </template>
@@ -38,6 +35,19 @@
 
 export default {
   name: "Login",
+  data: () => {
+    return ({ 
+       form: {
+         login_email: null,
+         login_password: null
+       }
+    })
+  },
+  methods: {
+    login() {
+      console.log("🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 ")
+    }
+  }
 };
 </script>
 
