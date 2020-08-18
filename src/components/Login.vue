@@ -1,7 +1,7 @@
 <template>
-  <div> 
+  <div class="login"> 
     <form novalidate class="md-layout" @submit.prevent="login">
-      <md-card class="md-layout-item md-size-50 md-small-size-100">
+      <md-card class="md-layout-item md-size-100 md-small-size-100">
         <md-card-header>
           <div class="md-title">Login</div>
         </md-card-header>
@@ -52,7 +52,9 @@ export default {
 </script>
 
 <style>
-/* .login {
-  margin: auto;
-} */
+.login { 
+  margin: 0 auto;
+  max-width: 680px;
+  padding-top: 150px;
+}
 </style>

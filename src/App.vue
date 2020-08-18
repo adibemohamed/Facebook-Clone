@@ -46,21 +46,7 @@ export default {
           this.posts = postCollection;
           
         })
-        // .catch((error) => {
-        //   console.log("Error getting documents: ", error);
-        // });
-
-      // const email = "adibe@gmail.com";
-      // const password = "adibe123";
-      // const username = "adibemohamed"
-      // auth
-      // .createUserWithEmailAndPassword(email, password)
-      // .then((authUser) => {
-      //   return authUser.user.updateProfile({
-      //     username: username,
-      //   });
-      // })
-      // .catch((error) => console.log("🔴 ", error.message));
+     
 
        
   },
@@ -85,6 +71,7 @@ html {
   --green: #42b35d;
   --orange: #eab026;
   --red: #e84f3a; 
+  height: 100%;
 }
 #app {
   background-color: #f0f2f5;

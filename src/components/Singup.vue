@@ -1,7 +1,7 @@
 <template>
-  <div> 
-    <form novalidate class="md-layout" @submit.prevent="sinpup">
-      <md-card class="md-layout-item md-size-50 md-small-size-100">
+  <div class="signup"> 
+    <form novalidate class="md-layout" @submit.prevent="singup">
+      <md-card class="md-layout-item md-size-100 md-small-size-100">
         <md-card-header>
           <div class="md-title">Singup</div>
         </md-card-header>
@@ -63,7 +63,6 @@
             <span class="md-error" v-if="!$v.form.password.required">The password is required</span>
             <span class="md-error" v-else-if="!$v.form.password.password">Invalid password</span>
           </md-field>
-        </md-card-content>
 
           <md-field :class="Validate('password_confirm')">
             <label for="password_confirm">password_confirm</label>
@@ -71,6 +70,8 @@
             <span class="md-error" v-if="!$v.form.password_confirm.required">The password confirm is required</span>
             <span class="md-error" v-else-if="!$v.form.password_confirm.password_confirm">Invalid password confirm</span>
           </md-field> 
+
+        </md-card-content>
 
         <md-progress-bar md-mode="indeterminate" v-if="send" />
 
@@ -86,6 +87,7 @@
 <script> 
 import {validationMixin} from 'vuelidate';
 import {required, email, minLength, maxLength} from 'vuelidate/lib/validators';
+import { auth } from '../firebase';
 export default {
   name: "Signup",
   mixins: [validationMixin],
@@ -111,6 +113,10 @@ export default {
         email
       },
       password: {
+        required,
+        maxLength: maxLength(100)
+      },
+      password_confirm: {
         required,
         maxLength: maxLength(100)
       }
@@ -141,15 +147,22 @@ export default {
       }
     },
     singup() {
-     console.log("🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 🙂 ")
+      auth
+      .createUserWithEmailAndPassword(this.form.email, this.form.password)
+      .then()
+      .catch(error => {
+        console.log("Can't create you account: ", error)
+      })
     } 
   }
 };
 </script>
 
 <style>
-.singup {
+.signup {
+  max-width: 680px;
   margin: auto;
+  padding-top: 150px;
 }
 
 </style>
