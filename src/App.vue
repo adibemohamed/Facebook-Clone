@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <router-view
-      v-bind:posts="posts" 
-    ></router-view>
+    <router-view v-bind:posts="posts"></router-view>
   </div>
 </template>
 
@@ -13,47 +11,43 @@ import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
-import { db } from "./firebase"; 
+import { db } from "./firebase";
 
- Vue.use(VueMaterial);
- 
+Vue.use(VueMaterial);
+
 export default {
   name: "App",
-  components: {
-  },
+  components: {},
   data: function() {
     return {
       icon: "../assets/facebook-clone.png",
-      posts: [], 
+      posts: [],
     };
-  }, 
-  mounted: function(){
-    db.collection("posts") 
-        .onSnapshot((querySnapshot) => {
-          const postCollection = []
-          querySnapshot.forEach((doc) => {
-            postCollection.push({
-              username: doc.data().username,
-              caption: doc.data().caption,
-              imageUrl: doc.data().imageUrl,
-              timestamp: doc.data().timestamp,
-              id: doc.id
-            });
-          });
-
-          this.posts = postCollection;
-          
-        })
-     
-
-       
   },
-  
+  mounted: function() {
+    const postCollection = [];
+    db.collection("posts")
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          postCollection.push({
+            username: doc.data().username,
+            caption: doc.data().caption,
+            imageUrl: doc.data().imageUrl,
+            timestamp: doc.data().timestamp,
+            id: doc.id,
+          });
+        });
+        this.posts = postCollection;
+       
+      })
+ 
+  },
+
   computed: {
     // getPosts: function() {
     //   //return this.posts;
     // }
-  }
+  },
 };
 </script>
 
@@ -68,7 +62,7 @@ html {
   --purple: #9567ee;
   --green: #42b35d;
   --orange: #eab026;
-  --red: #e84f3a; 
+  --red: #e84f3a;
   height: 100%;
 }
 #app {
@@ -76,5 +70,4 @@ html {
   width: 100%;
   height: 100%;
 }
- 
 </style>
