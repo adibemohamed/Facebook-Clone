@@ -7,7 +7,7 @@
         </md-avatar>
         <div class="post__userAria">
           <p class="post__userName pointer hover__underline">
-            <strong>Adibe Mohamed</strong>
+            <strong>Adibe Mohamed </strong>
           </p>
           <p class="post__time secondary">{{ post.timestamp }}</p>
         </div>
@@ -44,7 +44,7 @@
         <md-avatar class="post__commentUser  pointer">
           <img v-bind:src="userImgUrl" alt />
         </md-avatar>
-        <input type="text" placeholder="Write a comment" class=" secondary" />
+        <input v-on:keyup.enter="setCommentId(post.id);addComment()" type="text" placeholder="Write a comment" class=" secondary" />
       </div>
       <div class="post__userComment">
         <md-avatar class="post__commentUser  pointer">
@@ -64,11 +64,21 @@
 </template>
 
 <script>
- 
- 
+ import firebase from 'firebase';
+ import {db} from '../firebase';
 
 export default {
   name: "Post",
+  data: () => {
+    return( 
+      {
+        comment: null,
+        commentId: null,
+        username: 'Adibe.mohamed',
+        commentList: []
+      }
+    )
+  },
   props: {
     post: null,
     userImgUrl: { 
@@ -77,7 +87,26 @@ export default {
       default:
         "https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8",
     },
-  } 
+  } ,
+  methods: {
+    addComment() {  
+      // add comment to the post with postId key
+      db.collection("posts").doc(this.commentId).collection("comments").add({
+        text: this.comment,
+        username: this.username,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      // clear the comment input
+      this.comment="";
+      this.commentId=null;
+    },
+    setCommentId(id) {
+      this.commentId = id;
+    } 
+  },
+  mounted: ()=>{
+    db.collection("posts")
+  }
 };
 </script>
 <style >
@@ -168,11 +197,13 @@ export default {
 }
 .post__addComment input {
   flex: 1;
+  outline: none;
   border: none;
   border-radius: 30px;
   background-color: #f0f2f5;
   padding: 10px;
   margin-left: 10px;
+  color: #000;
 }
 .post__commentUser {
   flex: 0;

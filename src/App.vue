@@ -37,6 +37,7 @@ export default {
               caption: doc.data().caption,
               imageUrl: doc.data().imageUrl,
               timestamp: doc.data().timestamp,
+              id: doc.id
             });
           });
 
