@@ -45,8 +45,8 @@ export default {
   data: () => {
     return {
       form: {
-        login_email: null,
-        login_password: null,
+        login_email: "abc@gmail.com",
+        login_password: "adibe1234",
       },
     };
   },
@@ -65,7 +65,10 @@ export default {
       });
 
       this.$store.commit("setOpenSignIn", true);
-      this.$router.push("/");
+      console.log(this.$store.state.openSignIn)
+      this.$router.push("/")
+      .catch(error=>{
+        console.info("ERRRRRRRRRRRRRRROR", error.message);})       
     },
   },
 };

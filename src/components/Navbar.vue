@@ -26,9 +26,9 @@ export default {
   name: "Navbar",
   props: ["icon"],
   methods:  { 
-    logout(){
+    async logout(){
       this.$store.commit('setOpenSignIn', false);
-      auth.logout();
+      await auth.logout();
       this.$router.push('/login')
     },
     login(){

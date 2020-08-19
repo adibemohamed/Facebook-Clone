@@ -9,6 +9,9 @@ export default new Vuex.Store({
     getters: {
         user: state => {
             return state.loggedUser;
+        },
+        signedIn: state => {
+            return state.openSignIn;
         }
     },
     mutations: {

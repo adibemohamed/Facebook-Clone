@@ -1,5 +1,5 @@
 <template>
-  <div class="signup"> 
+  <div class="signup">
     <form novalidate class="md-layout" @submit.prevent="singup">
       <md-card class="md-layout-item md-size-100 md-small-size-100">
         <md-card-header>
@@ -11,18 +11,38 @@
             <div class="md-layout-item md-small-size-100">
               <md-field :class="Validate('firstName')">
                 <label for="first-name">First Name</label>
-                <md-input name="first-name" id="first-name" autocomplete="given-name" v-model="form.firstName" :disabled="send" />
-                <span class="md-error" v-if="!$v.form.firstName.required">The first name is required</span>
-                <span class="md-error" v-else-if="!$v.form.firstName.minlength">Invalid first name</span>
+                <md-input
+                  name="first-name"
+                  id="first-name"
+                  autocomplete="given-name"
+                  v-model="form.firstName"
+                  :disabled="send"
+                />
+                <span class="md-error" v-if="!$v.form.firstName.required"
+                  >The first name is required</span
+                >
+                <span class="md-error" v-else-if="!$v.form.firstName.minlength"
+                  >Invalid first name</span
+                >
               </md-field>
             </div>
 
             <div class="md-layout-item md-small-size-100">
               <md-field :class="Validate('lastName')">
                 <label for="last-name">Last Name</label>
-                <md-input name="last-name" id="last-name" autocomplete="family-name" v-model="form.lastName" :disabled="send" />
-                <span class="md-error" v-if="!$v.form.lastName.required">The last name is required</span>
-                <span class="md-error" v-else-if="!$v.form.lastName.minlength">Invalid last name</span>
+                <md-input
+                  name="last-name"
+                  id="last-name"
+                  autocomplete="family-name"
+                  v-model="form.lastName"
+                  :disabled="send"
+                />
+                <span class="md-error" v-if="!$v.form.lastName.required"
+                  >The last name is required</span
+                >
+                <span class="md-error" v-else-if="!$v.form.lastName.minlength"
+                  >Invalid last name</span
+                >
               </md-field>
             </div>
           </div>
@@ -31,7 +51,13 @@
             <div class="md-layout-item md-small-size-100">
               <md-field :class="Validate('gender')">
                 <label for="gender">Gender</label>
-                <md-select name="gender" id="gender" v-model="form.gender" md-dense :disabled="send">
+                <md-select
+                  name="gender"
+                  id="gender"
+                  v-model="form.gender"
+                  md-dense
+                  :disabled="send"
+                >
                   <md-option></md-option>
                   <md-option value="M">M</md-option>
                   <md-option value="F">F</md-option>
@@ -43,51 +69,100 @@
             <div class="md-layout-item md-small-size-100">
               <md-field :class="Validate('age')">
                 <label for="age">Age</label>
-                <md-input type="number" id="age" name="age" autocomplete="age" v-model="form.age" :disabled="send" />
-                <span class="md-error" v-if="!$v.form.age.required">The age is required</span>
-                <span class="md-error" v-else-if="!$v.form.age.maxlength">Invalid age</span>
+                <md-input
+                  type="number"
+                  id="age"
+                  name="age"
+                  autocomplete="age"
+                  v-model="form.age"
+                  :disabled="send"
+                />
+                <span class="md-error" v-if="!$v.form.age.required"
+                  >The age is required</span
+                >
+                <span class="md-error" v-else-if="!$v.form.age.maxlength"
+                  >Invalid age</span
+                >
               </md-field>
             </div>
           </div>
 
           <md-field :class="Validate('email')">
             <label for="email">Email</label>
-            <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="send" />
-            <span class="md-error" v-if="!$v.form.email.required">The email is required</span>
-            <span class="md-error" v-else-if="!$v.form.email.email">Invalid email</span>
-          </md-field> 
+            <md-input
+              type="email"
+              name="email"
+              id="email"
+              autocomplete="email"
+              v-model="form.email"
+              :disabled="send"
+            />
+            <span class="md-error" v-if="!$v.form.email.required"
+              >The email is required</span
+            >
+            <span class="md-error" v-else-if="!$v.form.email.email"
+              >Invalid email</span
+            >
+          </md-field>
 
           <md-field :class="Validate('password')">
             <label for="password">password</label>
-            <md-input type="password" name="password" id="password" v-model="form.password" :disabled="send" />
-            <span class="md-error" v-if="!$v.form.password.required">The password is required</span>
-            <span class="md-error" v-else-if="!$v.form.password.password">Invalid password</span>
+            <md-input
+              type="password"
+              name="password"
+              id="password"
+              v-model="form.password"
+              :disabled="send"
+            />
+            <span class="md-error" v-if="!$v.form.password.required"
+              >The password is required</span
+            >
+            <span class="md-error" v-else-if="!$v.form.password.password"
+              >Invalid password</span
+            >
           </md-field>
 
           <md-field :class="Validate('password_confirm')">
             <label for="password_confirm">password_confirm</label>
-            <md-input type="password" name="password_confirm" id="password_confirm" v-model="form.password_confirm" :disabled="send" />
-            <span class="md-error" v-if="!$v.form.password_confirm.required">The password confirm is required</span>
-            <span class="md-error" v-else-if="!$v.form.password_confirm.password_confirm">Invalid password confirm</span>
-          </md-field> 
-
+            <md-input
+              type="password"
+              name="password_confirm"
+              id="password_confirm"
+              v-model="form.password_confirm"
+              :disabled="send"
+            />
+            <span class="md-error" v-if="!$v.form.password_confirm.required"
+              >The password confirm is required</span
+            >
+            <span
+              class="md-error"
+              v-else-if="!$v.form.password_confirm.password_confirm"
+              >Invalid password confirm</span
+            >
+          </md-field>
         </md-card-content>
 
         <md-progress-bar md-mode="indeterminate" v-if="send" />
 
         <md-card-actions>
-          <md-button type="submit" class="md-primary" :disabled="send">Create user</md-button>
+          <md-button type="submit" class="md-primary" :disabled="send"
+            >Create user</md-button
+          >
         </md-card-actions>
       </md-card>
- 
     </form>
   </div>
 </template>
 
-<script> 
-import {validationMixin} from 'vuelidate';
-import {required, email, minLength, maxLength} from 'vuelidate/lib/validators';
-import { auth } from '../firebase';
+<script>
+import { validationMixin } from "vuelidate";
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+} from "vuelidate/lib/validators";
+import { auth } from "../firebase";
 export default {
   name: "Signup",
   mixins: [validationMixin],
@@ -95,35 +170,35 @@ export default {
     form: {
       firstName: {
         required,
-        minLenght: minLength(3)
+        minLenght: minLength(3),
       },
       lastName: {
         required,
-        minLength: minLength(3)
+        minLength: minLength(3),
       },
       age: {
         required,
-        maxLength: maxLength(3)
+        maxLength: maxLength(3),
       },
       gender: {
-        required
+        required,
       },
       email: {
         required,
-        email
+        email,
       },
       password: {
         required,
-        maxLength: maxLength(100)
+        maxLength: maxLength(100),
       },
       password_confirm: {
         required,
-        maxLength: maxLength(100)
-      }
-    }
+        maxLength: maxLength(100),
+      },
+    },
   },
   data: function() {
-    return({
+    return {
       form: {
         firstName: null,
         lastName: null,
@@ -131,42 +206,44 @@ export default {
         age: null,
         email: null,
         password: null,
-        password_confirm: null
-       
+        password_confirm: null,
       },
-       send: false
-    })
+      send: false,
+    };
   },
   methods: {
     Validate(fieldName) {
-      const field = this.$v.form[fieldName]
-      if(field) {
+      const field = this.$v.form[fieldName];
+      if (field) {
         return {
-          'md-invalid' : field.$invalide && field.$dirty
-        }
+          "md-invalid": field.$invalide && field.$dirty,
+        };
       }
     },
     singup() {
       auth
-      .createUserWithEmailAndPassword(this.form.email, this.form.password)
-      .then(authUser => {
-        return authUser.user.updateProfile({
-          displayName: this.lastName +"."+ this.firstName
+        .createUserWithEmailAndPassword(this.form.email, this.form.password)
+        .then((authUser) => {
+          return authUser.user.updateProfile({
+            displayName: this.lastName + "." + this.firstName,
+          });
         })
-      })
-      .catch(error => {
-        console.log("Can't create you account: ", error)
-      })
-    } 
-  }
+        .catch((error) => {
+          console.log("Can't create you account: ", error);
+        });
+
+      this.$store.commit("setOpenSignIn", true);
+      console.log(this.$store.state.openSignIn);
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 
 <style>
-.signup { 
-  margin: auto; 
+.signup {
+  margin: auto;
   max-width: 700px;
   padding: 150px 20px 0px 20px;
 }
-
 </style>
