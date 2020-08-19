@@ -9,7 +9,7 @@
           <p class="post__userName pointer hover__underline">
             <strong>Adibe Mohamed </strong>
           </p>
-          <p class="post__time secondary">{{ post.timestamp }}</p>
+          <p class="post__time secondary">{{ post.timestamp.toDate().toString().substring(0, 16) }}</p>
         </div>
       </div>
 
@@ -52,9 +52,9 @@
           v-model="comment"
         />
       </div>
-       
-      <div class="post__userComment"  v-for="(comment, index) in comments" v-bind:key="index">
         <div v-if="showComments">
+      <div class="post__userComment"  v-for="(comment, index) in comments" v-bind:key="index">
+       
 
         <md-avatar class="post__commentUser  pointer">
           <img v-bind:src="userImgUrl" alt />
