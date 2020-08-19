@@ -44,28 +44,29 @@
           <img v-bind:src="userImgUrl" alt />
         </md-avatar>
         <input
-          v-on:keydown.enter="addComment"
-          @click="setCommentId(post.id)"
+          v-on:keydown.enter="addComment($event, post.id);"
+         
           type="text"
           placeholder="Write a comment"
           class=" secondary"
           v-model="comment"
         />
       </div>
-      <div class="post__userComment">
+       
+      <div class="post__userComment"  v-for="(comment, index) in comments" v-bind:key="index">
+        <div v-if="showComments">
+
         <md-avatar class="post__commentUser  pointer">
           <img v-bind:src="userImgUrl" alt />
         </md-avatar>
-        <div class="post__userCommentBody">
+        <div class="post__userCommentBody" >
           <div class="post__commentBubble">
             <p class="post__userName pointer hover__underline">
               <strong>Adibe Mohamed</strong>
             </p>
-            <span>This fucking killing it, And just amazing</span>
-            <p v-for="(comment, index) in comments" v-bind:key="index">
-              {{ comment.text }}
-            </p>
+            <span> {{ comment.text }}</span> 
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -84,25 +85,20 @@ export default {
       commentId: null,
       username: "Adibe.mohamed",
       comments: null,
+      userImgUrl: "https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8",
+      showComments: false,
     };
   },
   props: {
     post: null,
-    userImgUrl: {
-      type: String,
-      required: true,
-      default:
-        "https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-1/p200x200/87942170_623106144930349_6672718284065865728_n.jpg?_nc_cat=108&_nc_sid=7206a8&_nc_ohc=zwVpFzJUkcoAX-sR_yJ&_nc_ht=scontent.fcmn5-1.fna&_nc_tp=6&oh=ddbfec275df23073c4d5d3a94dbf1260&oe=5F5518E8",
-    },
+     
   },
   methods: {
-    addComment(e) {
-      console.log(e);
-       console.log("------------>" + this.commentId);
+    addComment(e, id) { 
       // add comment to the post with postId key
      if(e.target.value) {
         db.collection("posts")
-        .doc(this.commentId)
+        .doc(id)
         .collection("comments")
         .add({
           text: e.target.value,
@@ -111,12 +107,7 @@ export default {
         });
      }
       // clear the comment input
-      this.comment = "";
-      this.commentId = null;
-    },
-    setCommentId(id) {
-      
-      this.commentId = id;
+      this.comment = ""; 
     },
     setComments() {
      
@@ -235,7 +226,7 @@ export default {
 }
 .post__userComment {
   display: flex;
-  padding: 0px 10px;
+  padding: 2px 10px;
 }
 .post__commentUser {
   flex: 0;
