@@ -86,11 +86,8 @@
 </template>
 
 <script>
-
 import firebase from "firebase";
 import { db, storage } from "../firebase";
-
-
 
 export default {
   name: "PostCreate",
@@ -98,7 +95,7 @@ export default {
     return {
       showDialog: false,
       username: "Adibe Mohamed",
-      timetamp: null,
+      timestamp: null,
       caption: null,
       imageUrl: null,
       placeholder: "What's on you mind, " + this.username,
@@ -107,35 +104,49 @@ export default {
   },
   methods: {
     createPost() {
-      storage
-        .ref("images")
-        .child(this.imageUrl.name)
-        .getDownloadURL()
-        .then(url => {
-          db.collection("posts")
-            .add({
-             
-              caption: this.caption,
-              imageUrl: url,
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-              username: this.username,
-            })
-            .then(() => {
-              console.log("Document successfully written!");
+      const uploadTask = storage
+        .ref(`images/${this.imageUrl.name}`)
+        .put(this.imageUrl);
+      uploadTask.on(
+        "state_changed",
+        (snpashot) => {
+          const progress =
+            Math.round(snpashot.bytesTransferred / snpashot.totalBytes) * 100;
+          console.log("Upload Progress: " + progress + "%");
+        },
+        (error) => {
+          console.log("Error upload file" + error);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(this.imageUrl.name)
+            .getDownloadURL()
+            .then((url) => {
+              db.collection("posts")
+                .add({
+                  caption: this.caption,
+                  imageUrl: url,
+                  timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                  username: this.username,
+                })
+                .then(() => {
+                  console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                  console.error("Error writing document: ", error);
+                });
             })
             .catch((error) => {
-               console.log("👉 ", this.imageUrl);
-      console.log("👉 ", this.username);
-      console.log("👉 ", this.caption);
-              console.error("Error writing document: ", error);
+              console.error("Error uploading file: ", error);
             });
-        });
-
-     
+        }
+      );
     },
-    setImageUrl(e) { 
-      if(e.target.files[0]) {
-        this.imageUrl = e.target.files[0]
+    setImageUrl(e) {
+      if (e.target.files[0]) {
+        this.imageUrl = e.target.files[0];
+        // console.log(e.target.files[0]);
       }
     },
   },

@@ -15,11 +15,12 @@
 
       <div class="post__more pointer hover__gray secondary">...</div>
     </div>
-
-    <h3 class="post__caption">{{ post.caption }} </h3> 
+      <div class="post__caption">
+    <h3>{{ post.caption.substring(0,100)  }}</h3> 
+      </div>
     <div class="post__media pointer">
       <img
-        src="https://scontent.fcmn5-1.fna.fbcdn.net/v/t1.0-9/41678515_327688411138792_3693402459851456512_o.jpg?_nc_cat=102&_nc_sid=8bfeb9&_nc_ohc=xVOfFBP42Q8AX-AHuOp&_nc_ht=scontent.fcmn5-1.fna&oh=df93a02ba478cf9708ded327db7f59bb&oe=5F5437EA"
+        v-bind:src="post.imageUrl"
         alt
       />
     </div>
@@ -115,6 +116,8 @@ export default {
 .post__caption {
   padding: 5px 10px 10px 10px;
   font-weight: 400;
+  width: 100%;
+  word-wrap: break-word;
 }
 .post__media img {
   max-height: 500px;
