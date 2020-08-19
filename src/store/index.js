@@ -10,7 +10,7 @@ export default new Vuex.Store({
         user: state => {
             return state.loggedUser;
         },
-        signedIn: state => {
+        isSignedIn: state => {
             return state.openSignIn;
         }
     },

@@ -67,8 +67,8 @@ export default {
       this.$store.commit("setOpenSignIn", true);
       console.log(this.$store.state.openSignIn)
       this.$router.push("/")
-      .catch(error=>{
-        console.info("ERRRRRRRRRRRRRRROR", error.message);})       
+      // .catch(error=>{
+      //   console.info("ERRRRRRRRRRRRRRROR", error.message);})       
     },
   },
 };

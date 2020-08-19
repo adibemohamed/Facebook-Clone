@@ -1,63 +1,67 @@
 import Vue from "vue";
 import App from "./App.vue";
-import VueRouter from "vue-router";
-import Feed from "./components/Feed.vue";
+import VueRouter from 'vue-router';
+import Feed from './components/Feed.vue';
 import Login from "./components/Login.vue";
 import Signup from "./components/Singup.vue";
-import store from "./store/index";
+import store from './store/index'
 
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
 
-const isAuthenticated = store.state.openSignIn;
+const isAuthenticated = store.state.openSignIn; 
+
 
 const router = new VueRouter({
   routes: [
+
     {
       path: "/login",
       component: Login,
-      name: "login",
+      name: 'login',
       meta: {
-        requiresAuth: false,
-      },
+        requiresAuth: false
+      }
     },
     {
       path: "/singup",
       component: Signup,
-      name: "signup",
+      name: 'signup',
       meta: {
-        requiresAuth: false,
-      },
+        requiresAuth: false
+      }
     },
     {
       path: "/",
       component: Feed,
-      name: "home",
+      name: 'home',
       meta: {
-        requiresAuth: true,
-      },
-    },
-  ],
-});
+        requiresAuth: true
+      }
+
+    }
+  ]
+})
 
 router.beforeEach((to, from, next) => {
-  if (to.path !== "/login" && !isAuthenticated) {
+  if (to.path !== '/login' && !isAuthenticated) { 
     next({
-      name: "login",
+      name: 'login'
     });
   }
-  if (to.path == "/signup") {
+  if (to.path == '/signup') { 
     next({
-      name: "signup",
+      name: 'signup'
     });
   }
+ 
+    next();
+})
 
-  next();
-});
 
 new Vue({
   render: (h) => h(App),
   router,
-  store,
+  store
 }).$mount("#app");
