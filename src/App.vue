@@ -26,7 +26,8 @@ export default {
   },
   mounted: function() {
     const postCollection = [];
-    db.collection("posts")
+    db.collection("posts").
+    orderBy('timestamp', 'desc')
       .onSnapshot((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           postCollection.push({

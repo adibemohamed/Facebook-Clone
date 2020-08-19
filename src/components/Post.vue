@@ -9,7 +9,7 @@
           <p class="post__userName pointer hover__underline">
             <strong>Adibe Mohamed </strong>
           </p>
-          <p class="post__time secondary">{{ post.timestamp.toDate().toString().substring(0, 16) }}</p>
+          <p class="post__time secondary">{{ post.timestamp}}</p>
         </div>
       </div>
 
